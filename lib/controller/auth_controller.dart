@@ -1,7 +1,6 @@
 import 'package:app_delivery/controller/firestore_controller.dart';
 import 'package:app_delivery/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class AuthController {
   final FirebaseAuth _auth = FirebaseAuth.instance;

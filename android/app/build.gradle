@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.app_delivery"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -44,4 +44,12 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Usar una versión específica de Kotlin en lugar de kotlin_version
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22"
+    
+    // Eliminar la implementación de Google Maps si existe 
+    // implementation 'com.google.android.gms:play-services-maps:18.2.0'
 }

@@ -38,13 +38,19 @@ class _LoginPageState extends State<LoginPage> {
         );
         // No necesitamos navegar aquí porque el AuthWrapper se encargará de eso
       } catch (e) {
-        setState(() {
-          _errorMessage = e.toString();
-        });
+        // Verificar si el widget sigue montado antes de actualizar el estado
+        if (mounted) {
+          setState(() {
+            _errorMessage = e.toString();
+          });
+        }
       } finally {
-        setState(() {
-          _isLoading = false;
-        });
+        // Verificar si el widget sigue montado antes de actualizar el estado
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
     }
   }

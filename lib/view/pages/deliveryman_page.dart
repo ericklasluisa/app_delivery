@@ -1,4 +1,7 @@
 import 'package:app_delivery/controller/auth_controller.dart';
+import 'package:app_delivery/view/pages/deliveryman/my_deliveries_page.dart';
+import 'package:app_delivery/view/pages/deliveryman/pending_orders_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DeliverymanPage extends StatelessWidget {
@@ -7,6 +10,7 @@ class DeliverymanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = AuthController();
+    final User? currentUser = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -32,9 +36,9 @@ class DeliverymanPage extends StatelessWidget {
               color: Colors.deepPurple,
             ),
             const SizedBox(height: 20),
-            const Text(
-              '¡Bienvenido, Repartidor!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Text(
+              '¡Bienvenido${currentUser?.email != null ? ', ' + (currentUser!.email!.split('@')[0]) : ''}!',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             const Text(
@@ -48,21 +52,33 @@ class DeliverymanPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                backgroundColor: Colors.orange,
+                foregroundColor: Colors.white,
               ),
               onPressed: () {
-                // Navegación a la lista de pedidos pendientes
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PendingOrdersPage()),
+                );
               },
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(
-              icon: const Icon(Icons.checklist),
-              label: const Text('Entregas Completadas'),
+              icon: const Icon(Icons.delivery_dining),
+              label: const Text('Mis Entregas'),
               style: ElevatedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                backgroundColor: Colors.deepPurple,
+                foregroundColor: Colors.white,
               ),
               onPressed: () {
-                // Navegación al historial de entregas
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyDeliveriesPage()),
+                );
               },
             ),
           ],

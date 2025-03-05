@@ -1,4 +1,7 @@
 import 'package:app_delivery/controller/auth_controller.dart';
+import 'package:app_delivery/view/pages/client/new_order_page.dart';
+import 'package:app_delivery/view/pages/client/order_history_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ClientPage extends StatelessWidget {
@@ -7,6 +10,7 @@ class ClientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = AuthController();
+    final User? currentUser = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -32,9 +36,9 @@ class ClientPage extends StatelessWidget {
               color: Colors.deepPurple,
             ),
             const SizedBox(height: 20),
-            const Text(
-              '¡Bienvenido, Cliente!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Text(
+              '¡Bienvenido${currentUser?.email != null ? ', ' + (currentUser!.email!.split('@')[0]) : ''}!',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             const Text(
@@ -50,7 +54,10 @@ class ClientPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               ),
               onPressed: () {
-                // Navegación para crear un nuevo pedido
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const NewOrderPage()),
+                );
               },
             ),
             const SizedBox(height: 20),
@@ -62,7 +69,11 @@ class ClientPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               ),
               onPressed: () {
-                // Navegación al historial de pedidos
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OrderHistoryPage()),
+                );
               },
             ),
           ],
