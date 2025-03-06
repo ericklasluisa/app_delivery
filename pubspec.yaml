@@ -12,10 +12,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  firebase_core: ^2.24.2
   firebase_auth: ^4.15.3
   firebase_database: ^10.3.8
-  cloud_firestore: ^4.14.0
   intl: ^0.19.0
   url_launcher: ^6.2.2
 
@@ -26,6 +24,11 @@ dependencies:
   # Mantener estas dependencias para geolocalización
   geolocator: ^10.1.0
   permission_handler: ^11.1.0
+  firebase_core: ^2.32.0
+  cloud_firestore: ^4.17.5
+  firebase_messaging: ^14.7.10
+  flutter_local_notifications: ^18.0.1
+  googleapis_auth: ^1.6.0
 
 dev_dependencies:
   flutter_test:
